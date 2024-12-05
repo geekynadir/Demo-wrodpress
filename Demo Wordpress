@@ -1,0 +1,40 @@
+<?php
+/*
+Plugin Name: Smart FAQ Builder
+Description: A simple FAQ plugin for WordPress.
+Version: 1.0
+Author: Your Name
+*/
+
+// Register Shortcode to Display FAQ
+function display_faq() {
+    // Define FAQ items
+    $faq_content = '
+    <div class="smart-faq">
+        <h3>Frequently Asked Questions</h3>
+        <ul>
+            <li><strong>Q1: What is WordPress?</strong><br>A1: WordPress is a content management system (CMS) that allows you to create and manage websites easily.</li>
+            <li><strong>Q2: How to install WordPress?</strong><br>A2: You can install WordPress through cPanel or by uploading the files via FTP.</li>
+            <li><strong>Q3: How do I add a new post?</strong><br>A3: In the WordPress admin panel, go to "Posts" and click "Add New".</li>
+        </ul>
+    </div>';
+    
+    return $faq_content;
+}
+
+// Register Shortcode [smart_faq]
+add_shortcode('smart_faq', 'display_faq');
+
+// Enqueue Plugin Styles
+function smart_faq_styles() {
+    echo "
+    <style>
+        .smart-faq { margin-top: 20px; }
+        .smart-faq h3 { font-size: 1.5em; font-weight: bold; }
+        .smart-faq ul { list-style-type: none; padding-left: 0; }
+        .smart-faq li { margin-bottom: 10px; }
+    </style>
+    ";
+}
+add_action('wp_head', 'smart_faq_styles');
+?>
